@@ -6,12 +6,25 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import serverbusinesslogic.HangedGame;
 
 public class Servidor {
   private ServerSocket serverSocket;
+  private HangedGame game;
   
   public Servidor(int puerto, int tamanoCola) throws IOException {
      serverSocket = new ServerSocket(puerto, tamanoCola);
+     game = new HangedGame();
+  }
+  
+  private void ejecutarComando(String comando) {
+    if(comando.equals("initGame")) {
+      game.startGame();
+    }else if(comando.equals("checkletter")) {
+      
+    }else {
+      System.out.println("Comando inválido");
+    }
   }
 
   public void run() {
