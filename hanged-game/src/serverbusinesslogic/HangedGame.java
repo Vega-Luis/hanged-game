@@ -8,13 +8,34 @@ public class HangedGame {
   private ArrayList<String> words;
   private int rand;
   private Random random;
-  private Scanner inputSource;
+  private String currentWord;
+  private int fails = 0;
+  private int hits = 0;
   
   public HangedGame() {
     words = new ArrayList<String>();
     addWords();
     random = new Random();
-    inputSource = new Scanner(System.in);
+  }
+  
+  private void setFails() {
+    fails++;
+  }
+  
+  public int getFails() {
+    return fails;
+  }
+  
+  private void setHits() {
+    hits++;
+  }
+  
+  public int getHits() {
+    return hits;
+  }
+  
+  public String getCurrentWord() {
+    return currentWord;
   }
   
   private void addWords() {
@@ -25,55 +46,43 @@ public class HangedGame {
     words.add("edificio");
   }
   
-  private boolean checkLetter(char letter, String word) {
+  public void checkLetter(char letter, String word) {
     char wordLetter;
     for(int i = 0; i < word.length(); i++) {
       wordLetter = word.charAt(i);
       if(letter != wordLetter && letter != wordLetter-32) {
-        return false;
+        setFails();
       }
     }
-    return true;
+    setHits();
   }
   
   private void hint(String word) {
     if(word.equals("teacher")) {
-      System.out.println("Educador en inglés");
+      System.out.println("Educador en inglés\n");
     }
     if(word.equals("poo")) {
-      System.out.println("Paradigma de programación");
+      System.out.println("Paradigma de programación\n");
     }
     if(word.equals("dinosaurio")) {
-      System.out.println("Animal prehistorico");
+      System.out.println("Animal prehistorico\n");
     }
     if(word.equals("tecnologico")) {
-      System.out.println("Universidad ubicada en cartago");
+      System.out.println("Universidad ubicada en cartago\n");
     }
     if(word.equals("edificio")) {
-      System.out.println("Compuesto por paredes, techo, suelo, etc.");
+      System.out.println("Compuesto por paredes, techo, suelo, etc\n");
     }
   }
   
-  public boolean startGame() {
+  public void startGame() {
     rand = random.nextInt(words.size());
-    int fails = 0;
-    int aciertos = 0;
-    String word = words.get(rand);
-    char letter;
-    hint(word);
-    while(fails < 5) {
-      System.out.println("Ingrese una Letra");
-      letter = inputSource.next().charAt(0);
-      if(checkLetter(letter,word)) {
-        System.out.println("Letra acertada!");
-        if(aciertos == word.length()) {
-          return true;
-        }
-      }else {
-        fails++;
-        System.out.println("Fallo, intentos restantes :"+fails);
-      }
-    }
-    return false;
+    currentWord = words.get(rand);
+    hint(currentWord);
+    System.out.println("Partida iniciada!\n");
   }
+  
+  public void gameOver() {
+    System.out.println("Ha perdido!, la palabra era: "+currentWord+"\n");
+  } 
 }
