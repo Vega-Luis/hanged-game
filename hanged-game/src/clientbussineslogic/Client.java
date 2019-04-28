@@ -8,30 +8,54 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Clase permite establecer conexion con un servidor.
+ * @author Luis
+ * @version v4.28.19
+ */
 public class Client {
-  public static void main(String[] args) {
-    String serverName = args[0];
-    int port = Integer.parseInt(args[1]);
-
+  private Socket socket;
+  private String serverName;
+  private int port;
+  
+  /**
+   * Constructor de objetos de clase Cliente.
+   * @param serverName Direccion ip del servidor.
+   * @param port Puerto en el que se establecera la conexion.
+   */
+  public Client(String serverName, int port) {
+    this.serverName = serverName;
+    this.port = port;
+  }
+  
+  /**
+   * Establece una conexion con el servidor.
+   * Permite el intercambio de strings con el servidor.
+   * @param outMensaje Mensaje que sera enviado al servidor.
+   * @return Retorna el mensaje recibido del servidor.
+   * @throws UnknownHostException
+   * @throws IOException
+   */
+  public String conection(String outMensaje) {
     try {
-      System.out.println("Connecting to " + serverName + " on port " + port);
-      Socket socket = new Socket(serverName, port);
+      this.socket = new Socket(this.serverName, this.port);
 
-      System.out.println("Just connected to " + socket.getRemoteSocketAddress());
       OutputStream outToServer = socket.getOutputStream();
       DataOutputStream out = new DataOutputStream(outToServer);
+      out.writeUTF(outMensaje);
 
-      out.writeUTF("Hello from " + socket.getLocalSocketAddress());
       InputStream inFromServer = socket.getInputStream();
       DataInputStream in = new DataInputStream(inFromServer);
 
-      System.out.println("Server says " + in.readUTF());
-      socket.close();
-    } catch (UnknownHostException e) {
-      System.err.println("I can't find " + e);
-    } catch (IOException e) {
+      this.socket.close();
+      return in.readUTF();
+    }
+    catch (UnknownHostException e) {
+      return "No es posible encontrar el servidor";
+    }
+    catch (IOException e) {
       e.printStackTrace();
     }
+    return "";
   }
-
 }
