@@ -14,7 +14,6 @@ import java.net.UnknownHostException;
  * @version v4.28.19
  */
 public class Client {
-  
   private String serverName;
   private int port;
   
