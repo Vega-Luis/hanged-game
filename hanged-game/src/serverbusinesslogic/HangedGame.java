@@ -11,11 +11,33 @@ public class HangedGame {
   private String currentWord;
   private int fails = 0;
   private int hits = 0;
+  private String username;
+  private StringBuilder letterSpaces;
   
-  public HangedGame() {
+  private String hanged = "";
+  private final char Rightleg = 92;
+  private final String  man1 = "____";
+  private final String  man2 = "|  |";
+  private final String  man3 = "|  0";
+  private final String  man4 = "| /|"+Rightleg;
+  private final String  man5 = "| / "+Rightleg;
+  private final ArrayList<String> hangedParts;
+  
+  /*____
+  |  |
+  |  0
+  | /|\
+  | / \*/
+     
+  
+  public HangedGame(String username) {
     words = new ArrayList<String>();
     addWords();
     random = new Random();
+    setUsername(username);
+    letterSpaces = new StringBuilder();
+    hangedParts = new ArrayList<String>();
+    setHangedParts();
   }
   
   private void setFails() {
@@ -38,51 +60,93 @@ public class HangedGame {
     return currentWord;
   }
   
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
   private void addWords() {
-    words.add("teacher");
+    words.add("tea");
     words.add("poo");
-    words.add("dinosaurio");
-    words.add("tecnologico");
-    words.add("edificio");
+    words.add("dino");
+    words.add("tecn");
+    words.add("edif");
   }
   
-  public void checkLetter(char letter, String word) {
+  private void setHangedParts() {
+    hangedParts.add(man1);
+    hangedParts.add(man2);
+    hangedParts.add(man3);
+    hangedParts.add(man4);
+    hangedParts.add(man5);
+  }
+  
+  public String checkLetter(char letter) {
     char wordLetter;
-    for(int i = 0; i < word.length(); i++) {
-      wordLetter = word.charAt(i);
-      if(letter != wordLetter && letter != wordLetter-32) {
-        setFails();
+    boolean fail = true;
+    for(int i = 0; i < currentWord.length(); i++) {
+      wordLetter = currentWord.charAt(i);
+      if(wordLetter == letter) {
+        if(i != 0) {
+          letterSpaces.setCharAt(i+i, wordLetter);
+        }else {
+          letterSpaces.setCharAt(i, wordLetter);
+        }
+        setHits();
+        fail = false;
       }
     }
-    setHits();
+    if(fail) {
+      setFails();
+      String part = "";
+      for(int i = 0; i < fails; i++) {
+        part = hangedParts.get(i);
+      }
+      hanged += part + "\n";
+    }
+    return letterSpaces.toString() + "\n\n" + hanged +"\n";
   }
   
-  private void hint(String word) {
+  private String hint(String word) {
     if(word.equals("teacher")) {
-      System.out.println("Educador en inglés\n");
+      return "Educador en inglés\n";
     }
     if(word.equals("poo")) {
-      System.out.println("Paradigma de programación\n");
+      return "Paradigma de programación\n";
     }
     if(word.equals("dinosaurio")) {
-      System.out.println("Animal prehistorico\n");
+      return "Animal prehistorico\n";
     }
     if(word.equals("tecnologico")) {
-      System.out.println("Universidad ubicada en cartago\n");
+      return "Universidad ubicada en cartago\n";
     }
     if(word.equals("edificio")) {
-      System.out.println("Compuesto por paredes, techo, suelo, etc\n");
+      return "Compuesto por paredes, techo, suelo, etc\n";
+    }else {
+      return "";
     }
   }
-  
-  public void startGame() {
+  public String startGame() {
     rand = random.nextInt(words.size());
+    String mensaje = "Partida iniciada!\n";
     currentWord = words.get(rand);
-    hint(currentWord);
-    System.out.println("Partida iniciada!\n");
+    mensaje += hint(currentWord);
+    for(int i = 0; i < getCurrentWord().length(); i++) {
+      letterSpaces.append("_");
+      letterSpaces.append(" ");      
+    }
+    mensaje += "\n"+letterSpaces;
+    return mensaje;
   }
   
-  public void gameOver() {
-    System.out.println("Ha perdido!, la palabra era: "+currentWord+"\n");
+  public String gameOver() {
+    return "Ha perdido! "+ getUsername()+ " la palabra era: "+currentWord+"\n";
   } 
+  
+  public String gameWin() {
+    return "Ha ganado! "+getUsername()+"\n";
+  }
 }
