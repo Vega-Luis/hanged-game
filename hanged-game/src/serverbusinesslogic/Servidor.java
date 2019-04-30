@@ -11,99 +11,134 @@ import serverbusinesslogic.HangedGame;
 public class Servidor {
   private ServerSocket serverSocket;
   private HangedGame game;
+  private Socket socket; 
+  private String input; 
   
   public Servidor(int puerto, int tamanoCola) throws IOException {
      serverSocket = new ServerSocket(puerto, tamanoCola);
   }
   
+  public void run() {
+    while(true) {
+      try {
+        boolean over = true;           
+        while(over) {
+          System.out.println("Esperando comando");
+          socket = serverSocket.accept();       
+          DataInputStream in = new DataInputStream(socket.getInputStream());
+          input = in.readUTF();
+          System.out.println(input);
+          DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+          out.writeUTF("Éxito\n");
+          over = ejecutarComando(input);
+        }
+        socket.close();          
+       } 
+       catch (SocketTimeoutException s) {
+         System.out.println("Socket timed out!");
+         break;
+       } 
+      catch (IOException e) {
+        e.printStackTrace();
+        break;
+       }
+    }
+ }
+  
   private boolean ejecutarComando(String comando) {
     if(comando.equals("initGame")) {
-      game = new HangedGame();
-      game.startGame();
+      System.out.println("Iniciar");
+      iniciarPartida();
     }else if(comando.equals("checkletter")) {
-      if(game.equals(null)) {
-        System.out.println("No hay una partida iniciada\n");
-        return false;
-      }else {
-        game.checkLetter(ingresarLetra(), game.getCurrentWord());
-        if(game.getHits() == game.getCurrentWord().length()) {
-          game = null;
+      if(game.equals(null)) {   
+        try {
+          socket = serverSocket.accept();
+          DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+          out.writeUTF("No hay una partida iniciada\n");
+          socket.close();
           return false;
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }else {
+        ingresarLetra();
+        if(game.getHits() == game.getCurrentWord().length()) {
+          try {
+            socket = serverSocket.accept();
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            input = in.readUTF();
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());         
+            out.writeUTF(game.gameWin());
+            socket.close();
+            game = null;
+            return false;
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
         if(game.getFails() == 5) {
-          game.gameOver();
-          game = null;
-          return false;
+          try {
+            socket = serverSocket.accept();
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            input = in.readUTF();
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());         
+            out.writeUTF(game.gameOver());
+            socket.close();
+            game = null;
+            return false;
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
       }
     }else {
-      System.out.println("Comando inválido");
+      System.out.println("Inválido");
       return true;
     }
     return true;
   }
 
-  public void run() {
-     Socket socket; 
-     while(true) {
-       try {
-         System.out.println("Esperando cliente en puerto: " + serverSocket.getLocalPort() + "...");
-         // Esperar conexiones
-         socket = serverSocket.accept();
-         System.out.println("Se acaba de conectar: " + socket.getRemoteSocketAddress());
-         boolean over = true;
-         while(over) {
-           System.out.println("Ingrese un comando: ");
-           DataInputStream in = new DataInputStream(socket.getInputStream());
-           System.out.println();
-           over = ejecutarComando(in.readUTF());
-         }
-     
-         //System.out.println(in.readUTF());
-         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-         out.writeUTF("Thank you for connecting to " + socket.getLocalSocketAddress()
-         + "\nGoodbye!");
-         socket.close(); 
-        } 
-        catch (SocketTimeoutException s) {
-          System.out.println("Socket timed out!");
-          break;
-        } 
-       catch (IOException e) {
-         e.printStackTrace();
-         break;
-        }
-     }
-  }
-  
-  private char ingresarLetra() {
-    Socket socket = null;
-    try {
+  private void iniciarPartida() {
+    try {  
+      System.out.println("Username");
       socket = serverSocket.accept();
+      DataInputStream in = new DataInputStream(socket.getInputStream());
+      input = in.readUTF();
+      System.out.println(input);
+      game = new HangedGame(input);
+      DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+      out.writeUTF(game.startGame());
+      socket.close();
     } catch (IOException e) {
       e.printStackTrace();
-    }
-    DataInputStream in = null;
+    }   
+  }
+
+  private char ingresarLetra() {
     try {
-      in = new DataInputStream(socket.getInputStream());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    try {
-      return in.readChar();
+      System.out.println("Esperando Letra");
+      socket = serverSocket.accept();
+      DataInputStream in = new DataInputStream(socket.getInputStream());
+      input = in.readUTF();
+      System.out.println(input);  
+      DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+      out.writeUTF(game.checkLetter(input.charAt(0)));
+      socket.close();
+      return input.charAt(0);
     } catch (IOException e) {
       e.printStackTrace();
     }
     return 0; 
   }
+
+  
   public static void main(String[] args) {
      int puerto = Integer.parseInt(args[0]);
      int cola = Integer.parseInt(args[1]);
-     
      try {
         Servidor s = new Servidor(puerto, cola);
         s.run();
-     } catch (IOException e) {
+     } catch (IOException e) {  
         e.printStackTrace();
      }
   }
