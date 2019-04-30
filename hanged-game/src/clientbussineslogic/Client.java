@@ -14,7 +14,7 @@ import java.net.UnknownHostException;
  * @version v4.28.19
  */
 public class Client {
-  private Socket socket;
+  
   private String serverName;
   private int port;
   
@@ -38,7 +38,7 @@ public class Client {
    */
   public String conection(String outMensaje) {
     try {
-      this.socket = new Socket(this.serverName, this.port);
+    Socket socket = new Socket(this.serverName, this.port);
 
       OutputStream outToServer = socket.getOutputStream();
       DataOutputStream out = new DataOutputStream(outToServer);
@@ -46,16 +46,15 @@ public class Client {
 
       InputStream inFromServer = socket.getInputStream();
       DataInputStream in = new DataInputStream(inFromServer);
-
-      this.socket.close();
-      return in.readUTF();
+      String serverMensaje = in.readUTF(); 
+      socket.close();
+      return  serverMensaje;
     }
     catch (UnknownHostException e) {
       return "No es posible encontrar el servidor";
     }
     catch (IOException e) {
-      e.printStackTrace();
+      return "Excepcion con la IO";
     }
-    return "";
   }
 }

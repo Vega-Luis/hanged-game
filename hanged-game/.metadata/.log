@@ -1,0 +1,174 @@
+!SESSION 2019-04-29 18:43:15.266 -----------------------------------------------
+eclipse.buildId=4.10.0.I20181206-0815
+java.version=1.8.0_201
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_CR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-04-29 18:45:09.641
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Luis'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.mylyn.tasks.index.core 4 0 2019-04-29 18:45:09.811
+!MESSAGE Failed to update task list index
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unexpected exception: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1117)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.access$0(TaskListIndex.java:1084)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex$MaintainIndexJob.run(TaskListIndex.java:184)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.nio.file.FileSystemException: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+	at sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+	at java.nio.file.Files.move(Unknown Source)
+	at org.apache.lucene.store.FSDirectory.renameFile(FSDirectory.java:297)
+	at org.apache.lucene.store.LockValidatingDirectoryWrapper.renameFile(LockValidatingDirectoryWrapper.java:56)
+	at org.apache.lucene.index.SegmentInfos.finishCommit(SegmentInfos.java:801)
+	at org.apache.lucene.index.IndexWriter.finishCommit(IndexWriter.java:3021)
+	at org.apache.lucene.index.IndexWriter.commitInternal(IndexWriter.java:2996)
+	at org.apache.lucene.index.IndexWriter.shutdown(IndexWriter.java:1086)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1129)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.rebuildIndexCompletely(TaskListIndex.java:1262)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1103)
+	... 3 more
+!SUBENTRY 1 org.eclipse.mylyn.tasks.index.core 4 0 2019-04-29 18:45:09.821
+!MESSAGE Unexpected exception: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+!STACK 0
+java.nio.file.FileSystemException: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+	at sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+	at java.nio.file.Files.move(Unknown Source)
+	at org.apache.lucene.store.FSDirectory.renameFile(FSDirectory.java:297)
+	at org.apache.lucene.store.LockValidatingDirectoryWrapper.renameFile(LockValidatingDirectoryWrapper.java:56)
+	at org.apache.lucene.index.SegmentInfos.finishCommit(SegmentInfos.java:801)
+	at org.apache.lucene.index.IndexWriter.finishCommit(IndexWriter.java:3021)
+	at org.apache.lucene.index.IndexWriter.commitInternal(IndexWriter.java:2996)
+	at org.apache.lucene.index.IndexWriter.shutdown(IndexWriter.java:1086)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1129)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.rebuildIndexCompletely(TaskListIndex.java:1262)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1103)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.access$0(TaskListIndex.java:1084)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex$MaintainIndexJob.run(TaskListIndex.java:184)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.mylyn.tasks.index.core 4 0 2019-04-29 18:45:09.822
+!MESSAGE Unexpected exception: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+!STACK 0
+java.nio.file.FileSystemException: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+	at sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+	at java.nio.file.Files.move(Unknown Source)
+	at org.apache.lucene.store.FSDirectory.renameFile(FSDirectory.java:297)
+	at org.apache.lucene.store.LockValidatingDirectoryWrapper.renameFile(LockValidatingDirectoryWrapper.java:56)
+	at org.apache.lucene.index.SegmentInfos.finishCommit(SegmentInfos.java:801)
+	at org.apache.lucene.index.IndexWriter.finishCommit(IndexWriter.java:3021)
+	at org.apache.lucene.index.IndexWriter.commitInternal(IndexWriter.java:2996)
+	at org.apache.lucene.index.IndexWriter.shutdown(IndexWriter.java:1086)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1129)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.rebuildIndexCompletely(TaskListIndex.java:1262)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1103)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.access$0(TaskListIndex.java:1084)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex$MaintainIndexJob.run(TaskListIndex.java:184)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2019-04-29 20:25:59.710 -----------------------------------------------
+eclipse.buildId=4.10.0.I20181206-0815
+java.version=1.8.0_201
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_CR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-04-29 20:27:16.978
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Luis'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.mylyn.tasks.index.core 4 0 2019-04-29 20:27:22.254
+!MESSAGE Failed to update task list index
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unexpected exception: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1117)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.access$0(TaskListIndex.java:1084)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex$MaintainIndexJob.run(TaskListIndex.java:184)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.nio.file.FileSystemException: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+	at sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+	at java.nio.file.Files.move(Unknown Source)
+	at org.apache.lucene.store.FSDirectory.renameFile(FSDirectory.java:297)
+	at org.apache.lucene.store.LockValidatingDirectoryWrapper.renameFile(LockValidatingDirectoryWrapper.java:56)
+	at org.apache.lucene.index.SegmentInfos.finishCommit(SegmentInfos.java:801)
+	at org.apache.lucene.index.IndexWriter.finishCommit(IndexWriter.java:3021)
+	at org.apache.lucene.index.IndexWriter.commitInternal(IndexWriter.java:2996)
+	at org.apache.lucene.index.IndexWriter.shutdown(IndexWriter.java:1086)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1129)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.rebuildIndexCompletely(TaskListIndex.java:1262)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1103)
+	... 3 more
+!SUBENTRY 1 org.eclipse.mylyn.tasks.index.core 4 0 2019-04-29 20:27:22.258
+!MESSAGE Unexpected exception: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+!STACK 0
+java.nio.file.FileSystemException: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+	at sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+	at java.nio.file.Files.move(Unknown Source)
+	at org.apache.lucene.store.FSDirectory.renameFile(FSDirectory.java:297)
+	at org.apache.lucene.store.LockValidatingDirectoryWrapper.renameFile(LockValidatingDirectoryWrapper.java:56)
+	at org.apache.lucene.index.SegmentInfos.finishCommit(SegmentInfos.java:801)
+	at org.apache.lucene.index.IndexWriter.finishCommit(IndexWriter.java:3021)
+	at org.apache.lucene.index.IndexWriter.commitInternal(IndexWriter.java:2996)
+	at org.apache.lucene.index.IndexWriter.shutdown(IndexWriter.java:1086)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1129)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.rebuildIndexCompletely(TaskListIndex.java:1262)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1103)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.access$0(TaskListIndex.java:1084)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex$MaintainIndexJob.run(TaskListIndex.java:184)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.mylyn.tasks.index.core 4 0 2019-04-29 20:27:22.258
+!MESSAGE Unexpected exception: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+!STACK 0
+java.nio.file.FileSystemException: C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\pending_segments_1 -> C:\Users\Luis\Dropbox\documents\tec\semestre-iii\poo\laboratorios\lab9\hanged-game\hanged-game\.metadata\.mylyn\.taskListIndex\segments_1: El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso.
+
+	at sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+	at sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+	at java.nio.file.Files.move(Unknown Source)
+	at org.apache.lucene.store.FSDirectory.renameFile(FSDirectory.java:297)
+	at org.apache.lucene.store.LockValidatingDirectoryWrapper.renameFile(LockValidatingDirectoryWrapper.java:56)
+	at org.apache.lucene.index.SegmentInfos.finishCommit(SegmentInfos.java:801)
+	at org.apache.lucene.index.IndexWriter.finishCommit(IndexWriter.java:3021)
+	at org.apache.lucene.index.IndexWriter.commitInternal(IndexWriter.java:2996)
+	at org.apache.lucene.index.IndexWriter.shutdown(IndexWriter.java:1086)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1129)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.rebuildIndexCompletely(TaskListIndex.java:1262)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.maintainIndex(TaskListIndex.java:1103)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex.access$0(TaskListIndex.java:1084)
+	at org.eclipse.mylyn.internal.tasks.index.core.TaskListIndex$MaintainIndexJob.run(TaskListIndex.java:184)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

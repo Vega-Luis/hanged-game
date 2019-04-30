@@ -18,16 +18,21 @@ public class ConsoleUI {
   public void showOptions() {
     System.out.println("Lista de comandos");
     System.out.println("1. initGame");
-    System.out.println("2. checkLetter");
+    System.out.println("2. checkletter");
+    System.out.println("Instrucciones");
+    System.out.println("1. ejecute comando initGame");
+    System.out.println("2. Envie el nombre de su usuario");
+    System.out.println("3. Ejecute comando checkletter");
+    System.out.println("4. Escriba la letra y presione enter");
+    System.out.println("5. Repita los ultimos dos pasos");
+    System.out.println("6. Enter para comprobar el juego");
   }
   
   /**
    * inicializa el juego.
    */
   public void initGame() {
-    System.out.println("Ingrese el nombre de usuario mas el comando:");
-    Scanner scanner = new Scanner(System.in);
-    System.out.println(client.conection(scanner.nextLine()));
+    System.out.println(client.conection("Solicito conexion"));
   }
   
   /**
@@ -36,7 +41,6 @@ public class ConsoleUI {
   public void play() {
     boolean gameOver = false;
     while (!gameOver) {
-      System.out.println("Try");
       Scanner scanner = new Scanner(System.in);
       String out = client.conection(scanner.nextLine());
       System.out.println(out);
@@ -50,6 +54,7 @@ public class ConsoleUI {
     ConsoleUI ui = new ConsoleUI();
     ui.client = new Client(args[0],Integer.parseInt(args[1]));
     ui.showOptions();
-    ui.initGame();
+    //ui.initGame();
+    ui.play();
   }
 }
